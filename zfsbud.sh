@@ -168,8 +168,7 @@ validate_dataset() {
 
   # Validate dataset name.
 
-  # todo Make it work for pools without datasets?
-  [[ $dataset == *@* ]] || [[ $dataset != */* ]] && die "Provided parameters need to be source datasets (source/dataset/path1 source/dataset/path2 ...)."
+  [[ $dataset == *@* ]] && die "Provided parameters need to be source datasets (source/dataset/path1 source/dataset/path2 ...)."
 
   ! zfs list -H -o name $dataset | grep -qx "$dataset" && die "Source dataset '$dataset' does not exist."
 
